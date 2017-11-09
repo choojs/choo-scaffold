@@ -2,7 +2,7 @@
   "name": "choo-scaffold",
   "description": "Scaffold out Choo files",
   "repository": "choojs/choo-scaffold",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "bin": {
     "choo-scaffold": "./bin.js"
   },
