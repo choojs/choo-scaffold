@@ -72,11 +72,37 @@ var argv = minimist(process.argv.slice(2), {
     createStore(arg)
   } else if (cmd === 'view') {
     createView(arg)
+  } else if (!cmd) {
+    select(function (cmd) {
+      if (cmd === 'store') {
+        createStore()
+      } else if (cmd === 'view') {
+        createView()
+      } else {
+        console.log(NODIR)
+        process.exit(1)
+      }
+    })
   } else {
     console.log(NODIR)
     process.exit(1)
   }
 })(argv)
+
+function select (done) {
+  inquirer.prompt([{
+    type: 'list',
+    name: 'input',
+    message: 'Choose a scaffold type:',
+    choices: [
+      'store',
+      'view'
+    ]
+  }]).then(function (answers) {
+    var answer = answers.input
+    done(answer)
+  })
+}
 
 function createStore (name) {
   if (name) {
