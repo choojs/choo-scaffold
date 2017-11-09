@@ -16,7 +16,7 @@
     "dedent": "^0.7.0",
     "inquirer": "^3.3.0",
     "minimist": "^1.2.0",
-    "rimraf": "^2.6.2"
+    "mkdirp": "^0.5.1"
   },
   "devDependencies": {
     "dependency-check": "^2.9.1",
