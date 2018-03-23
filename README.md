@@ -3,9 +3,7 @@
 [![downloads][8]][9] [![js-standard-style][10]][11]
 
 Scaffold out files for a [Choo](https://choo.io) project. Useful to speed up
-creating applications. If you're looking to generate projects from scratch,
-check out [create-choo-app](https://github.com/choojs/create-choo-app) and
-[create-choo-electron](https://github.com/choojs/create-choo-electron).
+creating applications. 
 
 ## Usage
 ```sh
@@ -41,6 +39,12 @@ $ npx choo-scaffold <command>
   Do you enjoy using this software? Become a backer:
   https://opencollective.com/choo
 ```
+
+## See Also
+
+[create-choo-app](https://github.com/choojs/create-choo-app) - create choo apps from scratch
+[create-choo-electron](https://github.com/choojs/create-choo-electron) - create choo electron apps from scratch
+[choo-cli](https://github.com/trainyard/choo-cli) - creates choo apps from templates on github
 
 ## License
 [Apache-2.0](./LICENSE)
