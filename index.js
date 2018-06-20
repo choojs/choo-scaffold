@@ -4,9 +4,11 @@ var path = require('path')
 var fs = require('fs')
 
 exports.store = function (filename, cb) {
+  var name = path.parse(filename).name
   var file = dedent`
     module.exports = store
 
+    store.storeName = '${name}'
     function store (state, emitter) {
       emitter.on('DOMContentLoaded', function () {
       })
