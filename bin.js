@@ -13,8 +13,9 @@ var USAGE = `
 
   Commands:
 
-    store     generate a new store
-    view      generate a new view
+    store       generate a new store
+    view        generate a new view
+    component   generate a new component
 
   Options:
 
@@ -29,6 +30,9 @@ var USAGE = `
 
     Create a new view
     ${clr('$ choo-scaffold view 404', 'cyan')}
+
+    Create a new component
+    ${clr('$ choo-scaffold component button', 'cyan')}
 
   Running into trouble? Feel free to file an issue:
   ${clr('https://github.com/choojs/choo-scaffold/issues/new', 'cyan')}
@@ -72,12 +76,16 @@ var argv = minimist(process.argv.slice(2), {
     createStore(arg)
   } else if (cmd === 'view') {
     createView(arg)
+  } else if (cmd === 'component') {
+    createComponent(arg)
   } else if (!cmd) {
     select(function (cmd) {
       if (cmd === 'store') {
         createStore()
       } else if (cmd === 'view') {
         createView()
+      } else if (cmd === 'component') {
+        createComponent()
       } else {
         console.log(NODIR)
         process.exit(1)
@@ -96,7 +104,8 @@ function select (done) {
     message: 'Choose a scaffold type:',
     choices: [
       'store',
-      'view'
+      'view',
+      'component'
     ]
   }]).then(function (answers) {
     var answer = answers.input
@@ -143,6 +152,27 @@ function createView (name) {
   function create (answer) {
     var filename = path.join(process.cwd(), 'views', answer + '.js')
     write(filename, lib.view)
+  }
+}
+
+function createComponent (name) {
+  if (name) {
+    create(name)
+  } else {
+    inquirer.prompt([{
+      type: 'input',
+      name: 'input',
+      message: "What's the component's name?",
+      validate: (answer) => answer.length >= 1
+    }]).then(function (answers) {
+      var answer = answers.input
+      create(answer)
+    })
+  }
+
+  function create (answer) {
+    var filename = path.join(process.cwd(), 'components', answer + '.js')
+    write(filename, lib.component)
   }
 }
 

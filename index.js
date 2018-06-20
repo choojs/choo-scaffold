@@ -41,6 +41,37 @@ exports.view = function (filename, cb) {
   })
 }
 
+exports.component = function (filename, cb) {
+  var file = dedent`
+    var Component = require('choo/component')
+    var html = require('choo/html')
+    
+    class component extends Component {
+      constructor () {
+        super()
+      }
+    
+      createElement () {
+        return html\`
+          <div>
+          </div>
+        \`
+      }
+    
+      update () {
+        return false
+      }
+    }
+    
+    module.exports = component
+  `
+  var dir = path.dirname(filename)
+  mkdirp(dir, function (err) {
+    if (err) return cb(err)
+    write(filename, file, cb)
+  })
+}
+
 function write (filename, file, cb) {
   fs.writeFile(filename, file, function (err) {
     if (err) return cb(new Error('Could not write file ' + filename))
