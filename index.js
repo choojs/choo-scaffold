@@ -51,24 +51,25 @@ exports.component = function (filename, cb) {
   var file = dedent`
     var Component = require('choo/component')
     var html = require('choo/html')
-    
+
     class ${name} extends Component {
-      constructor () {
-        super()
+      constructor (id, state, emit) {
+        super(id)
+        this.local = state.components[id] = {}
       }
-    
+
       createElement () {
         return html\`
           <div>
           </div>
         \`
       }
-    
+
       update () {
-        return false
+        return true
       }
     }
-    
+
     module.exports = ${name}
   `
   var dir = path.dirname(filename)
