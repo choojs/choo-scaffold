@@ -42,11 +42,17 @@ exports.view = function (filename, cb) {
 }
 
 exports.component = function (filename, cb) {
+  var name = path
+              .parse(filename).name
+              .split('-')
+              .map(word => word[0].toUpperCase() + word.slice(1))
+              .join('')
+
   var file = dedent`
     var Component = require('choo/component')
     var html = require('choo/html')
     
-    class component extends Component {
+    class ${name} extends Component {
       constructor () {
         super()
       }
@@ -63,7 +69,7 @@ exports.component = function (filename, cb) {
       }
     }
     
-    module.exports = component
+    module.exports = ${name}
   `
   var dir = path.dirname(filename)
   mkdirp(dir, function (err) {
