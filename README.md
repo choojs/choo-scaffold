@@ -16,8 +16,9 @@ $ npx choo-scaffold <command>
 
   Commands:
 
-    store     generate a new store
-    view      generate a new view
+    store       generate a new store
+    view        generate a new view
+    component   generate a new component
 
   Options:
 
@@ -33,6 +34,9 @@ $ npx choo-scaffold <command>
     Create a new view
     $ choo-scaffold view 404
 
+    Create a new component
+    $ choo-scaffold component button
+
   Running into trouble? Feel free to file an issue:
   https://github.com/choojs/choo-scaffold/issues/new
 
@@ -42,9 +46,9 @@ $ npx choo-scaffold <command>
 
 ## See Also
 
-[create-choo-app](https://github.com/choojs/create-choo-app) - create choo apps from scratch
-[create-choo-electron](https://github.com/choojs/create-choo-electron) - create choo electron apps from scratch
-[choo-cli](https://github.com/trainyard/choo-cli) - creates choo apps from templates on github
+- [create-choo-app](https://github.com/choojs/create-choo-app) - create choo apps from scratch
+- [create-choo-electron](https://github.com/choojs/create-choo-electron) - create choo electron apps from scratch
+- [choo-cli](https://github.com/trainyard/choo-cli) - creates choo apps from templates on github
 
 ## License
 [Apache-2.0](./LICENSE)

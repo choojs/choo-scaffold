@@ -41,6 +41,44 @@ exports.view = function (filename, cb) {
   })
 }
 
+exports.component = function (filename, cb) {
+  var name = path
+              .parse(filename).name
+              .split('-')
+              .map(word => word[0].toUpperCase() + word.slice(1))
+              .join('')
+
+  var file = dedent`
+    var Component = require('choo/component')
+    var html = require('choo/html')
+
+    class ${name} extends Component {
+      constructor (id, state, emit) {
+        super(id)
+        this.local = state.components[id] = {}
+      }
+
+      createElement () {
+        return html\`
+          <div>
+          </div>
+        \`
+      }
+
+      update () {
+        return true
+      }
+    }
+
+    module.exports = ${name}
+  `
+  var dir = path.dirname(filename)
+  mkdirp(dir, function (err) {
+    if (err) return cb(err)
+    write(filename, file, cb)
+  })
+}
+
 function write (filename, file, cb) {
   fs.writeFile(filename, file, function (err) {
     if (err) return cb(new Error('Could not write file ' + filename))
